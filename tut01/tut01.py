@@ -49,6 +49,12 @@ print("o_6 = ", o_6)
 print("o_7 = ", o_7)
 print("o_8 = ", o_8)
 
+intial = data['U'].mean()
+final = data['V'].mean()
+acc = data['W'].mean()
+
+
+
 def octact_identification(mod=5000):
 ###Code
 
