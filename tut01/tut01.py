@@ -1,3 +1,9 @@
+#importing libraries
+import pandas as pd
+
+#for data preprocessing read all data
+data = pd.read_csv("octant_input.csv")
+
 def octact_identification(mod=5000):
 ###Code
 
