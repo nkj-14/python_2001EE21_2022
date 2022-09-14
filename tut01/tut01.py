@@ -149,3 +149,6 @@ for i in range(0, l, t1):
             4: Octant[i:i+t1].count('+4'), -4: Octant[i:i+t1].count('-4')}
         h1 = h1.append(k, ignore_index=True)
 fra = [pg, h1]
+
+ans = pd.concat(fra, axis=1)
+ans.to_csv("octant_output.csv", index=False)
