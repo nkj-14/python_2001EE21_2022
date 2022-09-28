@@ -155,5 +155,9 @@ if ver == "3.8.10":
 else:
     print("Please install 3.8.10. Instruction are present in the GitHub Repo/Webmail. Url: https://pastebin.com/nvibxmjw")
 
+
+#function mod value input
 mod=5000
+
+#function call
 octact_identification(mod)
