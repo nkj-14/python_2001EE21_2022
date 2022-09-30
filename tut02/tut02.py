@@ -142,6 +142,69 @@ def octant_transition_count(mod=5000):
                     4: Octant[i:i+t1].count(+4), -4: Octant[i:i+t1].count(-4)}
                 h1 = h1.append(k, ignore_index=True)
         
+        blank_row = {'':'', "OctantID":''}
+        h1 = h1.append(blank_row, ignore_index=True)
+        h1 = h1.append(blank_row, ignore_index=True)
+        rowa = {"OctantID":"Overall Transition Count"}
+        h1 = h1.append(rowa, ignore_index=True)
+        row_to = {"OctantID":'', 1:"To"}
+        h1 = h1.append(row_to, ignore_index=True)
+        row_1 = {"OctantID":"Count", 1:1,-1:-1, 2:2,-2:-2, 3:3,-3:-3, 4:4,-4:-4}
+        h1 = h1.append(row_1, ignore_index=True)
+
+        transition_1 = []
+        transition_11 = []
+        transition_2 = []
+        transition_22 = []
+        transition_3 = []
+        transition_33 = []
+        transition_4 = []
+        transition_44 = []
+
+        for i in range(0, (l-1), 1):
+                if(Octant[i+1]==+1):
+                    transition_1.append(Octant[i])
+                elif(Octant[i+1]==-1):
+                    transition_11.append(Octant[i])
+                elif(Octant[i+1]==+2):
+                    transition_2.append(Octant[i])
+                elif(Octant[i+1]==-2):
+                    transition_22.append(Octant[i])
+                elif(Octant[i+1]==+3):
+                    transition_3.append(Octant[i])
+                elif(Octant[i+1]==-3):
+                    transition_33.append(Octant[i])
+                elif(Octant[i+1]==+4):
+                    transition_4.append(Octant[i])
+                elif(Octant[i+1]==-4):
+                    transition_44.append(Octant[i])
+
+        r_1 = {"": "From", "OctantID": 1, 1: transition_1.count(+1), -1: transition_11.count(+1), 2: transition_2.count(+1), -2: transition_22.count(+1),
+                    3: transition_3.count(+1), -3: transition_33.count(+1), 4: transition_4.count(+1), -4: transition_44.count(+1)}
+        h1 = h1.append(r_1, ignore_index=True)
+        r_11 = {"OctantID": -1, 1: transition_1.count(-1), -1: transition_11.count(-1), 2: transition_2.count(-1), -2: transition_22.count(-1),
+                    3: transition_3.count(-1), -3: transition_33.count(-1), 4: transition_4.count(-1), -4: transition_44.count(-1)}
+        r_2 = {"OctantID": 2, 1: transition_1.count(+2), -1: transition_11.count(+2), 2: transition_2.count(+2), -2: transition_22.count(+2),
+                    3: transition_3.count(+2), -3: transition_33.count(+2), 4: transition_4.count(+2), -4: transition_44.count(+2)}
+        r_22 = {"OctantID": -2, 1: transition_1.count(-2), -1: transition_11.count(-2), 2: transition_2.count(-2), -2: transition_22.count(-2),
+                    3: transition_3.count(-2), -3: transition_33.count(-2), 4: transition_4.count(-2), -4: transition_44.count(-2)}
+        r_3 = {"OctantID": 3, 1: transition_1.count(+3), -1: transition_11.count(+3), 2: transition_2.count(+3), -2: transition_22.count(+3),
+                    3: transition_3.count(+3), -3: transition_33.count(+3), 4: transition_4.count(+3), -4: transition_44.count(+3)}
+        r_33 = {"OctantID": -3, 1: transition_1.count(-3), -1: transition_11.count(-3), 2: transition_2.count(-3), -2: transition_22.count(-3),
+                    3: transition_3.count(-3), -3: transition_33.count(-3), 4: transition_4.count(-3), -4: transition_44.count(-3)}
+        r_4 = {"OctantID": 4, 1: transition_1.count(+4), -1: transition_11.count(+4), 2: transition_2.count(+4), -2: transition_22.count(+4),
+                    3: transition_3.count(+4), -3: transition_33.count(+4), 4: transition_4.count(+4), -4: transition_44.count(+4)}
+        r_44 = {"OctantID": -4, 1: transition_1.count(-4), -1: transition_11.count(-4), 2: transition_2.count(-4), -2: transition_22.count(-4),
+                    3: transition_3.count(-4), -3: transition_33.count(-4), 4: transition_4.count(-4), -4: transition_44.count(-4)}
+        h1 = h1.append(r_11, ignore_index=True)
+        h1 = h1.append(r_2, ignore_index=True)
+        h1 = h1.append(r_22, ignore_index=True)
+        h1 = h1.append(r_3, ignore_index=True)
+        h1 = h1.append(r_33, ignore_index=True)
+        h1 = h1.append(r_4, ignore_index=True)
+        h1 = h1.append(r_44, ignore_index=True)
+
+        
 
     except:
         print("Something went wrong while opening the file or file is not found.")
