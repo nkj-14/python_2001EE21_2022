@@ -130,6 +130,19 @@ def octant_transition_count(mod=5000):
         elif d_2[r]<0  and d_3[r]>0 and d_4[r]>0:
             o_3=o_3+1
         h1= pd.DataFrame(da)
+        t1 = mod
+        new_row2 = {'': "User Input", "OctantID": "Mod"+" "+str(t1)}
+        h1 = h1.append(new_row2, ignore_index=True)
+        l=len(data['Time'])
+        for i in range(0, l, t1):
+                x = str(i)+"-"+str(i+t1-1)
+
+                k = {"OctantID": x, 1: Octant[i:i+t1].count(+1), -1: Octant[i:i+t1].count(-1), 2: Octant[i:i+t1].count(+2),
+                    -2: Octant[i:i+t1].count(-2), 3: Octant[i:i+t1].count(+3), -3: Octant[i:i+t1].count(-3),
+                    4: Octant[i:i+t1].count(+4), -4: Octant[i:i+t1].count(-4)}
+                h1 = h1.append(k, ignore_index=True)
+        
+
     except:
         print("Something went wrong while opening the file or file is not found.")
         exit()
