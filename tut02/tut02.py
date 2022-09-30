@@ -210,7 +210,7 @@ def octant_transition_count(mod=5000):
                 h1 = h1.append(blank_row, ignore_index=True)
                 h1 = h1.append(blank_row, ignore_index=True)
                 rowa = {"OctantID":"Mod Transition Count"}
-                x = str(j)+"-"+str(j+t1)
+                x = str(j)+"-"+str(j+t1-1)
                 h1 = h1.append(rowa, ignore_index=True)
                 row_to = {"OctantID":x, 1:"To"}
                 h1 = h1.append(row_to, ignore_index=True)
@@ -275,7 +275,6 @@ def octant_transition_count(mod=5000):
         ans = pd.concat(fra, axis=1)
         ans.to_excel("output_octant_transition_identify.xlsx", index=False)
 
-
     except:
         print("Something went wrong while opening the file or file is not found.")
         exit()
@@ -286,6 +285,9 @@ if ver == "3.8.10":
     print("Correct Version Installed")
 else:
     print("Please install 3.8.10. Instruction are present in the GitHub Repo/Webmail. Url: https://pastebin.com/nvibxmjw")
-
-mod=5000
-octant_transition_count(mod)
+try:
+    mod=5000
+    octant_transition_count(mod)
+except:
+    print("Give proper integer value to mod")
+    exit()
