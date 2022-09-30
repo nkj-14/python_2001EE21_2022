@@ -270,6 +270,11 @@ def octant_transition_count(mod=5000):
                 h1 = h1.append(r_04, ignore_index=True)
                 h1 = h1.append(r_044, ignore_index=True)
 
+        fra = [pg, h1]
+
+        ans = pd.concat(fra, axis=1)
+        ans.to_excel("output_octant_transition_identify.xlsx", index=False)
+
 
     except:
         print("Something went wrong while opening the file or file is not found.")
