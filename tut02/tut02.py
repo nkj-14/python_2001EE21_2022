@@ -205,6 +205,71 @@ def octant_transition_count(mod=5000):
         h1 = h1.append(r_44, ignore_index=True)
 
         
+        for j in range(0, l, t1):
+                blank_row = {'':'', "OctantID":''}
+                h1 = h1.append(blank_row, ignore_index=True)
+                h1 = h1.append(blank_row, ignore_index=True)
+                rowa = {"OctantID":"Mod Transition Count"}
+                x = str(j)+"-"+str(j+t1)
+                h1 = h1.append(rowa, ignore_index=True)
+                row_to = {"OctantID":x, 1:"To"}
+                h1 = h1.append(row_to, ignore_index=True)
+                row_1 = {"OctantID":"Count", 1:1,-1:-1, 2:2,-2:-2, 3:3,-3:-3, 4:4,-4:-4}
+                h1 = h1.append(row_1, ignore_index=True)
+
+                transition_01 = []
+                transition_011 = []
+                transition_02 = []
+                transition_022 = []
+                transition_03 = []
+                transition_033 = []
+                transition_04 = []
+                transition_044 = []
+
+                for i in range(j, (j+t1), 1):
+                    if((i)<(l-1)):
+                        if(Octant[i+1]==+1):
+                            transition_01.append(Octant[i])
+                        elif(Octant[i+1]==-1):
+                            transition_011.append(Octant[i])
+                        elif(Octant[i+1]==+2):
+                            transition_02.append(Octant[i])
+                        elif(Octant[i+1]==-2):
+                            transition_022.append(Octant[i])
+                        elif(Octant[i+1]==+3):
+                            transition_03.append(Octant[i])
+                        elif(Octant[i+1]==-3):
+                            transition_033.append(Octant[i])
+                        elif(Octant[i+1]==+4):
+                            transition_04.append(Octant[i])
+                        elif(Octant[i+1]==-4):
+                            transition_044.append(Octant[i])
+
+                r_01 = {"": "From", "OctantID": 1, 1: transition_01.count(+1), -1: transition_011.count(+1), 2: transition_02.count(+1), -2: transition_022.count(+1),
+                            3: transition_03.count(+1), -3: transition_033.count(+1), 4: transition_04.count(+1), -4: transition_044.count(+1)}
+                h1 = h1.append(r_01, ignore_index=True)
+                r_011 = {"OctantID": -1, 1: transition_01.count(-1), -1: transition_011.count(-1), 2: transition_02.count(-1), -2: transition_022.count(-1),
+                            3: transition_03.count(-1), -3: transition_033.count(-1), 4: transition_04.count(-1), -4: transition_044.count(-1)}
+                r_02 = {"OctantID": 2, 1: transition_01.count(+2), -1: transition_011.count(+2), 2: transition_02.count(+2), -2: transition_022.count(+2),
+                            3: transition_03.count(+2), -3: transition_033.count(+2), 4: transition_04.count(+2), -4: transition_044.count(+2)}
+                r_022 = {"OctantID": -2, 1: transition_01.count(-2), -1: transition_011.count(-2), 2: transition_02.count(-2), -2: transition_022.count(-2),
+                            3: transition_03.count(-2), -3: transition_033.count(-2), 4: transition_04.count(-2), -4: transition_044.count(-2)}
+                r_03 = {"OctantID": 3, 1: transition_01.count(+3), -1: transition_011.count(+3), 2: transition_02.count(+3), -2: transition_022.count(+3),
+                            3: transition_03.count(+3), -3: transition_033.count(+3), 4: transition_04.count(+3), -4: transition_044.count(+3)}
+                r_033 = {"OctantID": -3, 1: transition_01.count(-3), -1: transition_011.count(-3), 2: transition_02.count(-3), -2: transition_022.count(-3),
+                            3: transition_03.count(-3), -3: transition_033.count(-3), 4: transition_04.count(-3), -4: transition_044.count(-3)}
+                r_04 = {"OctantID": 4, 1: transition_01.count(+4), -1: transition_011.count(+4), 2: transition_02.count(+4), -2: transition_022.count(+4),
+                            3: transition_03.count(+4), -3: transition_033.count(+4), 4: transition_04.count(+4), -4: transition_044.count(+4)}
+                r_044 = {"OctantID": -4, 1: transition_01.count(-4), -1: transition_011.count(-4), 2: transition_02.count(-4), -2: transition_022.count(-4),
+                            3: transition_03.count(-4), -3: transition_033.count(-4), 4: transition_04.count(-4), -4: transition_044.count(-4)}
+                h1 = h1.append(r_011, ignore_index=True)
+                h1 = h1.append(r_02, ignore_index=True)
+                h1 = h1.append(r_022, ignore_index=True)
+                h1 = h1.append(r_03, ignore_index=True)
+                h1 = h1.append(r_033, ignore_index=True)
+                h1 = h1.append(r_04, ignore_index=True)
+                h1 = h1.append(r_044, ignore_index=True)
+
 
     except:
         print("Something went wrong while opening the file or file is not found.")
