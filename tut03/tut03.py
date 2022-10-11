@@ -235,7 +235,18 @@ def octant_longest_subsequence_count():
             else:
                 u88+=1
             u8=v    
+        longest_subsequence = [u1,u2,u3,u4,u5,u6,u7,u8]
+        cnt = [u11,u22,u33,u44,u55,u66,u77,u88]
+        OctantId = ['+1','-1','+2','-2','+3','-3','+4','-4']
+        sa = {"": [None]}
+        saa = pd.DataFrame(sa)
+        da = {"OctantID": OctantId, "Longest subsequence length": longest_subsequence, "Count": cnt}
 
+        h1= pd.DataFrame(da)
+        fra = [pg, saa, h1]
+
+        ans = pd.concat(fra, axis=1)
+        ans.to_excel("output_octant_longest_subsequence.xlsx", index=False)
     except:
         print("Something went wrong while opening the file or file is not found.")
         exit()
