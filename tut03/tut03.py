@@ -10,6 +10,16 @@ def octant_longest_subsequence_count():
     import pandas as pd
 
 
+    #for data preprocessing read all data
+    try:
+        data = pd.read_excel("input_octant_longest_subsequence.xlsx")
+
+    
+
+    except:
+        print("Something went wrong while opening the file or file is not found.")
+        exit()
+
 
 from platform import python_version
 ver = python_version()
