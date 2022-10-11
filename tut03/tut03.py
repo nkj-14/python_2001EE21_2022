@@ -247,6 +247,7 @@ def octant_longest_subsequence_count():
 
         ans = pd.concat(fra, axis=1)
         ans.to_excel("output_octant_longest_subsequence.xlsx", index=False)
+
     except:
         print("Something went wrong while opening the file or file is not found.")
         exit()
