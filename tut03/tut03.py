@@ -54,7 +54,62 @@ def octant_longest_subsequence_count():
 
         intial = data['U'].mean()
         final = data['V'].mean()
-        acc = data['W'].mean()    
+        acc = data['W'].mean()
+
+
+        #from tqdm.notebook import tqdm
+        data
+        o1=[intial]
+        o2=[final]
+        o3=[acc]
+
+        # print("Octant ID", "1", "-1", "2", "-2", "3", "-3", "4", "-4")
+        # print("Overall count", o_1, o_2, o_3, o_4, o_5, o_6, o_7, o_8)
+        # d = [[]]
+        for i in range(len(data['Time'])-1):
+                o1.append(None)
+                o2.append(None)
+                o3.append(None)
+        d=[["Overall count"],[o_1, o_2, o_3, o_4, o_5, o_6, o_7, o_8]]
+        makedata = {"Time": data['Time'], "U":data["U"], "V":data["V"],
+                        "W":data["W"], "U Avg":o1,"V Avg": o2, "W Avg": o3}
+
+
+        j = r = 0
+
+        if r==0:
+            o_1=o_2=o_3=o_4=o_5=o_6=o_7=o_8=0
+        if d_2[r]>0  and d_3[r]>0 and d_4[r]>0:
+            o_1=o_1+1
+        elif d_2[r]>0  and d_3[r]>0 and d_4[r]<0:
+            o_2=o_2+1
+        elif d_2[r]<0  and d_3[r]>0 and d_4[r]>0:
+            o_3=o_3+1
+        elif d_2[r]<0  and d_3[r]>0 and d_4[r]<0:
+            o_4=o_4+1
+        elif d_2[r]<0  and d_3[r]<0 and d_4[r]>0:
+            o_5=o_5+1
+        elif d_2[r]<0  and d_3[r]<0 and d_4[r]<0:
+            o_6=o_6+1
+        elif d_2[r]>0  and d_3[r]<0 and d_4[r]>0:
+            o_7=o_7+1
+        elif d_2[r]>0  and d_3[r]<0 and d_4[r]<0:
+            o_8=o_8+1
+        # if r%mod==mod-1:
+        #         # print(r-(mod-1),'-',r, o_1, o_2, o_3, o_4, o_5, o_6, o_7, o_8)
+
+            
+        w1 = [i-acc for i in data['W']]     
+        v1 = [i-final for i in data['V']]
+        u1 = [i-intial for i in data['U']]
+
+        pg = pd.DataFrame(makedata)
+            # make new columns of three variables
+        pg["U'=U-Uavg"] = u1
+        pg["V'=V-Vavg"] = v1
+        pg["W'=W-Wavg"] = w1
+
+        Octant = []    
 
     except:
         print("Something went wrong while opening the file or file is not found.")
