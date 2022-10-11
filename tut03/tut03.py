@@ -109,7 +109,132 @@ def octant_longest_subsequence_count():
         pg["V'=V-Vavg"] = v1
         pg["W'=W-Wavg"] = w1
 
-        Octant = []    
+        Octant = []
+
+        b1 = pg["V'=V-Vavg"].to_list()
+        c1 = pg["W'=W-Wavg"].to_list()
+        a1 = pg["U'=U-Uavg"].to_list()
+        for i in range(len(a1)):
+                s = ""
+                if (a1[i] < 0):
+                    s += '-'
+                else:
+                    s += '+'
+                if (b1[i] < 0):
+                    s += '-'
+                else:
+                    s += '+'
+                if (c1[i] < 0):
+                    s += '-'
+                else:
+                    s += '+'
+                Octant.append(d1[s])
+
+        pg["Octant"] = Octant
+        v=u1=u2=u3=u4=u5=u6=u7=u8=u11=u22=u33=u44=u55=u66=u77=u88=0
+        for i in range(len(a1)):
+            if(i==0):
+                v=1
+            elif(Octant[i]==Octant[i-1]):
+                v+=1
+            else:
+                if(Octant[i-1]==+1 and u1<=v):
+                    if(u1<v):
+                        u11=1
+                    else:
+                        u11+=1
+                    u1=v
+                elif(Octant[i-1]==-1 and u2<=v):
+                    if(u2<v):
+                        u22=1
+                    else:
+                        u22+=1
+                    u2=v
+                elif(Octant[i-1]==+2 and u3<=v):
+                    if(u3<v):
+                        u33=1
+                    else:
+                        u33+=1
+                    u3=v
+                elif(Octant[i-1]==-2 and u4<=v):
+                    if(u4<v):
+                        u44=1
+                    else:
+                        u44+=1
+                    u4=v
+                elif(Octant[i-1]==+3 and u5<=v):
+                    if(u5<v):
+                        u55=1
+                    else:
+                        u55+=1
+                    u5=v
+                elif(Octant[i-1]==-3 and u6<=v):
+                    if(u6<v):
+                        u66=1
+                    else:
+                        u66+=1
+                    u6=v
+                elif(Octant[i-1]==+4 and u7<=v):
+                    if(u7<v):
+                        u77=1
+                    else:
+                        u77+=1
+                    u7=v
+                elif(Octant[i-1]==-4 and u8<=v):
+                    if(u8<v):
+                        u88=1
+                    else:
+                        u88+=1
+                    u8=v
+                v=1
+        if(Octant[len(a1)-1]==+1 and u1<=v):
+            if(u1<v):
+                u11=1
+            else:
+                u11+=1
+            u1=v
+        elif(Octant[len(a1)-1]==-1 and u2<=v):
+            if(u2<v):
+                u22=1
+            else:
+                u22+=1
+            u2=v
+        elif(Octant[len(a1)-1]==+2 and u3<=v):
+            if(u3<v):
+                u33=1
+            else:
+                u33+=1
+            u3=v
+        elif(Octant[len(a1)-1]==-2 and u4<=v):
+            if(u4<v):
+                u44=1
+            else:
+                u44+=1
+            u4=v
+        elif(Octant[len(a1)-1]==+3 and u5<=v):
+            if(u5<v):
+                u55=1
+            else:
+                u55+=1
+            u5=v
+        elif(Octant[len(a1)-1]==-3 and u6<=v):
+            if(u6<v):
+                u66=1
+            else:
+                u66+=1
+            u6=v
+        elif(Octant[len(a1)-1]==+4 and u7<=v):
+            if(u7<v):
+                u77=1
+            else:
+                u77+=1
+            u7=v
+        elif(Octant[len(a1)-1]==-4 and u8<=v):
+            if(u8<v):
+                u88=1
+            else:
+                u88+=1
+            u8=v    
 
     except:
         print("Something went wrong while opening the file or file is not found.")
