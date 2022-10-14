@@ -284,6 +284,21 @@ def octant_longest_subsequence_count_with_range():
         elif(Octant[len(a1)-1]=='-4' and e==u8):
             f8.append(time[len(a1)-e])
             t8.append(time[len(a1)-1])
+        longest_subsequence = [u1,u2,u3,u4,u5,u6,u7,u8]
+        cnt = [u11,u22,u33,u44,u55,u66,u77,u88]
+        OctantId = ['+1','-1','+2','-2','+3','-3','+4','-4']
+        sa = {"": [None]}
+        saa = pd.DataFrame(sa)
+        da = {"OctantID": OctantId, "Longest subsequence length": longest_subsequence, "Count": cnt}
+        o=['+1']
+        uu=[u1]
+        uuu=[u11]
+        db = {"Octant_ID": o, "Longest_subsequence_length": uu, "Count_": uuu}
+        h1 = pd.DataFrame(da)
+        h2 =pd.DataFrame(db)
+        r = {"Octant_ID": "Time", "Longest_subsequence_length": "From", "Count_": "To"}
+        h2 = h2.append(r, ignore_index=True)
+
 
     except:
         print("Something went wrong while opening the file or file is not found.")
