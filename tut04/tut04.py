@@ -5,9 +5,17 @@ def octant_longest_subsequence_count_with_range():
     import pandas as pd
 
     #for data preprocessing read all data
-
+    try:
+        data = pd.read_excel("input_octant_longest_subsequence_with_range.xlsx")
 
     
+
+    except:
+        print("Something went wrong while opening the file or file is not found.")
+        exit()
+        
+
+
 from platform import python_version
 ver = python_version()
 
