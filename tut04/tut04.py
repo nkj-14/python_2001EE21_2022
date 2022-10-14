@@ -299,6 +299,71 @@ def octant_longest_subsequence_count_with_range():
         r = {"Octant_ID": "Time", "Longest_subsequence_length": "From", "Count_": "To"}
         h2 = h2.append(r, ignore_index=True)
 
+        for i in range(8):
+            if(i==0):
+                for j in range(u11):
+                    r_0 = {"Longest_subsequence_length": f1[j], "Count_": t1[j]}
+                    h2 = h2.append(r_0, ignore_index=True)
+            if(i==1):
+                rr = {"Octant_ID": '-1', "Longest_subsequence_length": u2, "Count_": u22}
+                h2 = h2.append(rr, ignore_index=True)
+                r = {"Octant_ID": "Time", "Longest_subsequence_length": "From", "Count_": "To"}
+                h2 = h2.append(r, ignore_index=True)
+                for j in range(u22):
+                    r_0 = {"Longest_subsequence_length": f2[j], "Count_": t2[j]}
+                    h2 = h2.append(r_0, ignore_index=True)
+            if(i==2):
+                rr = {"Octant_ID": '+2', "Longest_subsequence_length": u3, "Count_": u33}
+                h2 = h2.append(rr, ignore_index=True)                
+                r = {"Octant_ID": "Time", "Longest_subsequence_length": "From", "Count_": "To"}
+                h2 = h2.append(r, ignore_index=True)
+                for j in range(u33):
+                    r_0 = {"Longest_subsequence_length": f3[j], "Count_": t3[j]}
+                    h2 = h2.append(r_0, ignore_index=True)
+            if(i==3):
+                rr = {"Octant_ID": '-2', "Longest_subsequence_length": u4, "Count_": u44}
+                h2 = h2.append(rr, ignore_index=True)
+                r = {"Octant_ID": "Time", "Longest_subsequence_length": "From", "Count_": "To"}
+                h2 = h2.append(r, ignore_index=True)    
+                for j in range(u44):
+                    r_0 = {"Longest_subsequence_length": f4[j], "Count_": t4[j]}
+                    h2 = h2.append(r_0, ignore_index=True)
+            if(i==4):
+                rr = {"Octant_ID": '+3', "Longest_subsequence_length": u5, "Count_": u55}
+                h2 = h2.append(rr, ignore_index=True)
+                r = {"Octant_ID": "Time", "Longest_subsequence_length": "From", "Count_": "To"}
+                h2 = h2.append(r, ignore_index=True)
+                for j in range(u55):
+                    r_0 = {"Longest_subsequence_length": f5[j], "Count_": t5[j]}
+                    h2 = h2.append(r_0, ignore_index=True)
+            if(i==5):
+                rr = {"Octant_ID": '-3', "Longest_subsequence_length": u6, "Count_": u66}
+                h2 = h2.append(rr, ignore_index=True)
+                r = {"Octant_ID": "Time", "Longest_subsequence_length": "From", "Count_": "To"}
+                h2 = h2.append(r, ignore_index=True)
+                for j in range(u66):
+                    r_0 = {"Longest_subsequence_length": f6[j], "Count_": t6[j]}
+                    h2 = h2.append(r_0, ignore_index=True)
+            if(i==6):
+                rr = {"Octant_ID": '+4', "Longest_subsequence_length": u7, "Count_": u77}
+                h2 = h2.append(rr, ignore_index=True)
+                r = {"Octant_ID": "Time", "Longest_subsequence_length": "From", "Count_": "To"}
+                h2 = h2.append(r, ignore_index=True)
+                for j in range(u77):
+                    r_0 = {"Longest_subsequence_length": f7[j], "Count_": t7[j]}
+                    h2 = h2.append(r_0, ignore_index=True)
+            if(i==7):
+                rr = {"Octant_ID": '-4', "Longest_subsequence_length": u8, "Count_": u88}
+                h2 = h2.append(rr, ignore_index=True)
+                r = {"Octant_ID": "Time", "Longest_subsequence_length": "From", "Count_": "To"}
+                h2 = h2.append(r, ignore_index=True)
+                for j in range(u88):
+                    r_0 = {"Longest_subsequence_length": f8[j], "Count_": t8[j]}
+                    h2 = h2.append(r_0, ignore_index=True)
+
+        fra = [pg, saa, h1, saa, h2]
+
+
 
     except:
         print("Something went wrong while opening the file or file is not found.")
