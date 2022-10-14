@@ -108,6 +108,183 @@ def octant_longest_subsequence_count_with_range():
                 Octant.append(d1[s])
 
         pg["Octant"] = Octant
+        v=u1=u2=u3=u4=u5=u6=u7=u8=u11=u22=u33=u44=u55=u66=u77=u88=0
+        f1=[]
+        f2=[]
+        f3=[]
+        f4=[]
+        f5=[]
+        f6=[]
+        f7=[]
+        f8=[]
+        t1=[]
+        t2=[]
+        t3=[]
+        t4=[]
+        t5=[]
+        t6=[]
+        t7=[]
+        t8=[]
+        for i in range(len(a1)):
+            if(i==0):
+                v=1
+            elif(Octant[i]==Octant[i-1]):
+                v+=1
+            else:
+                if(Octant[i-1]=='+1' and u1<=v):
+                    if(u1<v):
+                        u11=1
+                    else:
+                        u11+=1
+                    u1=v
+                elif(Octant[i-1]=='-1' and u2<=v):
+                    if(u2<v):
+                        u22=1
+                    else:
+                        u22+=1
+                    u2=v
+                elif(Octant[i-1]=='+2' and u3<=v):
+                    if(u3<v):
+                        u33=1
+                    else:
+                        u33+=1
+                    u3=v
+                elif(Octant[i-1]=='-2' and u4<=v):
+                    if(u4<v):
+                        u44=1
+                    else:
+                        u44+=1
+                    u4=v
+                elif(Octant[i-1]=='+3' and u5<=v):
+                    if(u5<v):
+                        u55=1
+                    else:
+                        u55+=1
+                    u5=v
+                elif(Octant[i-1]=='-3' and u6<=v):
+                    if(u6<v):
+                        u66=1
+                    else:
+                        u66+=1
+                    u6=v
+                elif(Octant[i-1]=='+4' and u7<=v):
+                    if(u7<v):
+                        u77=1
+                    else:
+                        u77+=1
+                    u7=v
+                elif(Octant[i-1]=='-4' and u8<=v):
+                    if(u8<v):
+                        u88=1
+                    else:
+                        u88+=1
+                    u8=v
+                v=1
+        if(Octant[len(a1)-1]=='+1' and u1<=v):
+            if(u1<v):
+                u11=1
+            else:
+                u11+=1
+            u1=v
+        elif(Octant[len(a1)-1]=='-1' and u2<=v):
+            if(u2<v):
+                u22=1
+            else:
+                u22+=1
+            u2=v
+        elif(Octant[len(a1)-1]=='+2' and u3<=v):
+            if(u3<v):
+                u33=1
+            else:
+                u33+=1
+            u3=v
+        elif(Octant[len(a1)-1]=='-2' and u4<=v):
+            if(u4<v):
+                u44=1
+            else:
+                u44+=1
+            u4=v
+        elif(Octant[len(a1)-1]=='+3' and u5<=v):
+            if(u5<v):
+                u55=1
+            else:
+                u55+=1
+            u5=v
+        elif(Octant[len(a1)-1]=='-3' and u6<=v):
+            if(u6<v):
+                u66=1
+            else:
+                u66+=1
+            u6=v
+        elif(Octant[len(a1)-1]=='+4' and u7<=v):
+            if(u7<v):
+                u77=1
+            else:
+                u77+=1
+            u7=v
+        elif(Octant[len(a1)-1]=='-4' and u8<=v):
+            if(u8<v):
+                u88=1
+            else:
+                u88+=1
+            u8=v
+        e=0
+        for i in range(len(a1)):
+            if(i==0):
+                e=1
+            elif(Octant[i]==Octant[i-1]):
+                e+=1
+            elif(Octant[i]!=Octant[i-1]):
+                if(Octant[i-1]=='+1' and e==u1):
+                    f1.append(time[i-e])
+                    t1.append(time[i-1])
+                elif(Octant[i-1]=='-1' and e==u2):
+                    f2.append(time[i-e])
+                    t2.append(time[i-1])
+                elif(Octant[i-1]=='+2' and e==u3):
+                    f3.append(time[i-e])
+                    t3.append(time[i-1])
+                elif(Octant[i-1]=='-2' and e==u4):
+                    f4.append(time[i-e])
+                    t4.append(time[i-1])
+                elif(Octant[i-1]=='+3' and e==u5):
+                    f5.append(time[i-e])
+                    t5.append(time[i-1])
+                elif(Octant[i-1]=='-3' and e==u6):
+                    f6.append(time[i-e])
+                    t6.append(time[i-1])
+                elif(Octant[i-1]=='+4' and e==u7):
+                    f7.append(time[i-e])
+                    t7.append(time[i-1])
+                elif(Octant[i-1]=='-4' and e==u8):
+                    f8.append(time[i-e])
+                    t8.append(time[i-1])
+                e=1
+        if(Octant[len(a1)-1]=='+1' and e==u1):
+            f1.append(time[len(a1)-e])
+            t1.append(time[len(a1)-1])
+        elif(Octant[len(a1)-1]=='-1' and e==u2):
+            f2.append(time[len(a1)-e])
+            t2.append(time[len(a1)-1])
+        elif(Octant[len(a1)-1]=='+2' and e==u3):
+            f3.append(time[len(a1)-e])
+            t3.append(time[len(a1)-1])
+        elif(Octant[len(a1)-1]=='-2' and e==u4):
+            f4.append(time[len(a1)-e])
+            t4.append(time[len(a1)-1])
+        elif(Octant[len(a1)-1]=='+3' and e==u5):
+            f5.append(time[len(a1)-e])
+            t5.append(time[len(a1)-1])
+        elif(Octant[len(a1)-1]=='-3' and e==u6):
+            f6.append(time[len(a1)-e])
+            t6.append(time[len(a1)-1])
+        elif(Octant[len(a1)-1]=='+4' and e==u7):
+            f7.append(time[len(a1)-e])
+            t7.append(time[len(a1)-1])
+        elif(Octant[len(a1)-1]=='-4' and e==u8):
+            f8.append(time[len(a1)-e])
+            t8.append(time[len(a1)-1])
+
     except:
         print("Something went wrong while opening the file or file is not found.")
         exit()
