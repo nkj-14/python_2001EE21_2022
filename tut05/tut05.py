@@ -14,6 +14,16 @@ def octant_range_names(mod=5000):
     #importing libraries
     import pandas as pd
 
+    #for data preprocessing read all data
+    try:
+        data = pd.read_excel("octant_input.xlsx")
+
+
+
+    except:
+        print("Something went wrong while opening the file or file is not found.")
+        exit()
+
 from platform import python_version
 ver = python_version()
 
