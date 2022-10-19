@@ -135,6 +135,121 @@ def octant_range_names(mod=5000):
                 4: Octant[i:i+t1].count('+4'), -4: Octant[i:i+t1].count('-4')}
             h1 = h1.append(k, ignore_index=True)
 
+        blank_row = {'': ''}
+        h1 = h1.append(blank_row, ignore_index=True)
+        h1 = h1.append(blank_row, ignore_index=True)
+        h1 = h1.append(blank_row, ignore_index=True)
+        OctantId = ['+1','-1','+2','-2','+3','-3','+4','-4']
+        OctantName = ["Internal outward interaction", "External outward interaction", "External Ejection", "Internal Ejection", "External inward interaction", "Internal inward interaction", "Internal sweep", "External sweep"]
+        a = {1: "Octant_ID", -1: "Octant Name", +2: "Count of Rank 1 Mod Values"}
+        h1 = h1.append(a, ignore_index=True)
+
+        rank_for = [Octant.count('+1'), Octant.count('-1'), Octant.count('+2'), Octant.count('-2'), Octant.count('+3'), Octant.count('-3'), Octant.count('+4'), Octant.count('-4')]
+        rr = [Octant.count('+1'), Octant.count('-1'), Octant.count('+2'), Octant.count('-2'), Octant.count('+3'), Octant.count('-3'), Octant.count('+4'), Octant.count('-4')]
+        rr.sort(reverse=True)
+        rfinal = []
+        r1=r2=r3=r4=r5=r6=r7=r8=c=0
+        for i in range(8):
+            c=0
+            for j in range(8):
+                if(rank_for[i]==rr[j]):
+                    if(j==0):
+                        if(i==0):
+                            ro=1
+                        elif(i==1):
+                            ro=-1
+                        elif(i==2):
+                            ro=2
+                        elif(i==3):
+                            ro=-2
+                        elif(i==4):
+                            ro=3
+                        elif(i==5):
+                            ro=-3
+                        elif(i==6):
+                            ro=4
+                        elif(i==7):
+                            ro=-4
+                        rn=OctantName[i]
+                    if(i==0):
+                        r1=(j+1)
+                    elif(i==1):
+                        r2=(j+1)
+                    elif(i==2):
+                        r3=(j+1)
+                    elif(i==3):
+                        r4=(j+1)
+                    elif(i==4):
+                        r5=(j+1)
+                    elif(i==5):
+                        r6=(j+1)
+                    elif(i==6):
+                        r7=(j+1)
+                    elif(i==7):
+                        r8=(j+1)
+                    c=1
+                if(c==1):
+                    break
+        db = {"Rank of +1": [r1], "Rank of -1": [r2], "Rank of +2": [r3], "Rank of -2": [r4], "Rank of +3": [r5], "Rank of -3": [r6], "Rank of +4": [r7], "Rank of -4": [r8], "Rank 1 Octant ID": [ro], "Rank 1 Octant Name": [rn]}
+        h2 = pd.DataFrame(db)
+        h2 = h2.append(blank_row, ignore_index=True)
+
+        for i in range(0, l, t1):
+            rank_f = [Octant[i:i+t1].count('+1'), Octant[i:i+t1].count('-1'), Octant[i:i+t1].count('+2'), Octant[i:i+t1].count('-2'), Octant[i:i+t1].count('+3'), Octant[i:i+t1].count('-3'), Octant[i:i+t1].count('+4'), Octant[i:i+t1].count('-4')]
+            rrr = [Octant[i:i+t1].count('+1'), Octant[i:i+t1].count('-1'), Octant[i:i+t1].count('+2'), Octant[i:i+t1].count('-2'), Octant[i:i+t1].count('+3'), Octant[i:i+t1].count('-3'), Octant[i:i+t1].count('+4'), Octant[i:i+t1].count('-4')]
+            rrr.sort(reverse=True)
+
+            r11=r22=r33=r44=r55=r66=r77=r88=cc=0
+            for k in range(8):
+                cc=0
+                for j in range(8):
+                    if(rank_f[k]==rrr[j]):
+                        if(j==0):
+                            if(k==0):
+                                roo=1
+                            elif(k==1):
+                                roo=-1
+                            elif(k==2):
+                                roo=2
+                            elif(k==3):
+                                roo=-2
+                            elif(k==4):
+                                roo=3
+                            elif(k==5):
+                                roo=-3
+                            elif(k==6):
+                                roo=4
+                            elif(k==7):
+                                roo=-4
+                            rnn=OctantName[k]
+                            rfinal.append(roo)
+                        if(k==0):
+                            r11=(j+1)
+                        elif(k==1):
+                            r22=(j+1)
+                        elif(k==2):
+                            r33=(j+1)
+                        elif(k==3):
+                            r44=(j+1)
+                        elif(k==4):
+                            r55=(j+1)
+                        elif(k==5):
+                            r66=(j+1)
+                        elif(k==6):
+                            r77=(j+1)
+                        elif(k==7):
+                            r88=(j+1)
+                        cc=1
+                    if(cc==1):
+                        break
+            re = {"Rank of +1": r11, "Rank of -1": r22, "Rank of +2": r33, "Rank of -2": r44, "Rank of +3": r55, "Rank of -3": r66, "Rank of +4": r77, "Rank of -4": r88, "Rank 1 Octant ID": roo, "Rank 1 Octant Name": rnn}
+            h2 = h2.append(re, ignore_index=True)
+        rrfinal = [rfinal.count(1), rfinal.count(-1), rfinal.count(2), rfinal.count(-2), rfinal.count(3), rfinal.count(-3), rfinal.count(4), rfinal.count(-4)]
+        for i in range(8):
+            b = {1: OctantId[i], -1: OctantName[i], +2: rrfinal[i]}
+            h1 = h1.append(b, ignore_index=True)
+
+
     except:
         print("Something went wrong while opening the file or file is not found.")
         exit()
