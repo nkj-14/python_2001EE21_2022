@@ -248,7 +248,10 @@ def octant_range_names(mod=5000):
         for i in range(8):
             b = {1: OctantId[i], -1: OctantName[i], +2: rrfinal[i]}
             h1 = h1.append(b, ignore_index=True)
+    
+        fra = [pg, h1, h2]
 
+        ans = pd.concat(fra, axis=1)
 
     except:
         print("Something went wrong while opening the file or file is not found.")
