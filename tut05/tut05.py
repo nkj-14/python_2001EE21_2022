@@ -11,6 +11,9 @@ def octant_range_names(mod=5000):
 
 ###Code
 
+    #importing libraries
+    import pandas as pd
+
 from platform import python_version
 ver = python_version()
 
