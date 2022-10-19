@@ -252,6 +252,7 @@ def octant_range_names(mod=5000):
         fra = [pg, h1, h2]
 
         ans = pd.concat(fra, axis=1)
+        ans.to_excel("octant_output_ranking_excel.xlsx", index=False)
 
     except:
         print("Something went wrong while opening the file or file is not found.")
