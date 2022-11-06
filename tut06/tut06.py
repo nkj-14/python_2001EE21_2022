@@ -148,7 +148,28 @@ def attendance_report():
                         dat[star].append(attendance_roll[i])
                     else:
                         din[star].append(attendance_roll[i])
-
+    
+        for i in range(len(name)):
+            makedata = {"Date": [None], "Roll":roll[i], "Name":name[i],
+                    "Total Attendance Count":[None], "Real":[None],"Duplicate": [None], "Invalid": [None], "Absent": [None]}
+            pg = pd.DataFrame(makedata)
+            for j in range(len(dates)):
+                so = dat[dates[j]].count(roll[i])+din[dates[j]].count(roll[i])
+                re=inv=dup=abse=0
+                if(dat[dates[j]].count(roll[i])>=1):
+                    re=1
+                    abse=0
+                    dup=dat[dates[j]].count(roll[i])-1
+                else:
+                    re=0
+                    abse=1
+                    dup=0
+                inv=din[dates[j]].count(roll[i])
+                new_row = {"Date": str(dates[j]), "Roll": '', "Name": '', "Total Attendance Count": so, "Real": re, "Duplicate": dup, "Invalid": inv, "Absent": abse}
+                pg = pg.append(new_row, ignore_index=True)
+            gg = "output/"+str(roll[i])+".xlsx"
+            pg.to_excel(gg, index=False)
+    
 
     except:
         print("Something went wrong while opening the file or file is not found.")
