@@ -6,6 +6,17 @@ start_time = datetime.now()
 def attendance_report():
 ###Code
 
+    #importing libraries
+    import pandas as pd
+
+    try:
+        d1 = pd.read_csv("input_registered_students.csv")
+        d2 = pd.read_csv("input_attendance.csv")
+
+    except:
+        print("Something went wrong while opening the file or file is not found.")
+        exit()
+
 from platform import python_version
 ver = python_version()
 
