@@ -116,6 +116,40 @@ def attendance_report():
                         din[start_date] = []
                     start_date += delta
 
+    
+        for i in range(len(timestamp)):
+            
+            c = 0
+            for j in range(len(timestamp[i])):
+                if(timestamp[i][j]=='/'):
+                    c=1
+                    break
+                elif(timestamp[i][j]=='-'):
+                    c=2
+                    break
+            if(c==1):
+                f3 = "%d/%m/%Y %H:%M"
+                do = datetime.strptime(timestamp[i], f3)
+                doo = do.timetuple()
+                star = date(doo[0], doo[1], doo[2])
+                if(star in dates):
+                    if(do.hour == 14 or (do.hour == 15 and do.minute==0 and do.microsecond==0)):
+                        dat[star].append(attendance_roll[i])
+                    else:
+                        din[star].append(attendance_roll[i])
+        
+            elif(c==2):
+                f3 = "%d-%m-%Y %H:%M"
+                do = datetime.strptime(timestamp[i], f3)
+                doo = do.timetuple()
+                star = date(doo[0], doo[1], doo[2])
+                if(star in dates):
+                    if(do.hour == 14 or (do.hour == 15 and do.minute==0 and do.microsecond==0)):
+                        dat[star].append(attendance_roll[i])
+                    else:
+                        din[star].append(attendance_roll[i])
+
+
     except:
         print("Something went wrong while opening the file or file is not found.")
         exit()
