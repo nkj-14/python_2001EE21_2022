@@ -170,6 +170,36 @@ def attendance_report():
             gg = "output/"+str(roll[i])+".xlsx"
             pg.to_excel(gg, index=False)
     
+        mk = {"Roll": "(sorted by roll)", "Name": [None], str(dates[0]): "At least one real is P"}
+        pgg = pd.DataFrame(mk)
+        for i in range(1,len(dates)):
+            pgg[str(dates[i])]=[None]
+        pgg["Actual Lecture Taken"] = "(=Total Mon+Thru dynamic count)"
+        pgg["Total Real"] = [None]
+        pgg["% Attendance"] = "Real/Actual Lecture Taken (Keep two digits decimal precision e.g., 90.58, round off )"
+
+        re_total = []
+        for i in range(len(roll)):
+            re_total.append(0)
+
+        for i in range(len(roll)):
+
+            new_row = {"Roll": roll[i], "Name": name[i]}
+            rop=0
+            for j in range(len(dates)):
+                if(dat[dates[j]].count(roll[i])>=1):
+                    new_row[str(dates[j])] = 'P'
+                    rop+=1
+                else:
+                    new_row[str(dates[j])] = 'A'
+
+            new_row["Actual Lecture Taken"] = len(dates)
+            new_row["Total Real"] = rop
+            new_row["% Attendance"] = round(100*(rop/len(dates)),2)
+            pgg = pgg.append(new_row, ignore_index=True)
+
+        pgg.to_excel("output/attendance_report_consolidated.xlsx", index=False)
+
 
     except:
         print("Something went wrong while opening the file or file is not found.")
