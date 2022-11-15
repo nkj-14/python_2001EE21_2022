@@ -334,6 +334,213 @@ def octant_analysis(mod=5000):
 				ws[f"{g[2]}{b+i}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
 
 
+			cc = "AH"
+			ws[f"{cc}{4}"].value = "From"
+			b = 18
+			for i in range(0, len(d["T"]), mod):
+				ws[f"{cc}{b}"].value = "From"
+				b+=13
+			
+			transition_1 = []
+			transition_11 = []
+			transition_2 = []
+			transition_22 = []
+			transition_3 = []
+			transition_33 = []
+			transition_4 = []
+			transition_44 = []
+			
+			for i in range(0, (len(d["T"]))-1, 1):
+				if(Octant[i+1]==+1):
+					transition_1.append(Octant[i])
+				elif(Octant[i+1]==-1):
+					transition_11.append(Octant[i])
+				elif(Octant[i+1]==+2):
+					transition_2.append(Octant[i])
+				elif(Octant[i+1]==-2):
+					transition_22.append(Octant[i])
+				elif(Octant[i+1]==+3):
+					transition_3.append(Octant[i])
+				elif(Octant[i+1]==-3):
+					transition_33.append(Octant[i])
+				elif(Octant[i+1]==+4):
+					transition_4.append(Octant[i])
+				elif(Octant[i+1]==-4):
+					transition_44.append(Octant[i])
+
+			cc = "AI"
+			ws[f"{cc}{1}"].value = "Overall Transition Count"
+			cc = "AJ"
+			ws[f"{cc}{2}"].value = "To"
+
+			gg = ["AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ"]
+
+			for i in range(len(gg)):
+				if(i==0):
+					ws[f"{gg[i]}{3}"].value = "Octant #"
+				else:
+					ws[f"{gg[i]}{3}"].value = oo[i-1]
+				ws[f"{gg[i]}{3}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+			b=4
+			for i in range(8):
+				ma = -1
+				rc = 0
+				cr =0
+				for j in range(len(gg)):
+					if(j==0):
+						ws[f"{gg[j]}{b+i}"].value = oo[i]
+					elif(j==1):
+						ws[f"{gg[j]}{b+i}"].value = transition_1.count(oo[i])
+						if(ma<transition_1.count(oo[i])):
+							ma = transition_1.count(oo[i])
+							rc = b+i
+							cr = gg[j]
+					elif(j==2):
+						ws[f"{gg[j]}{b+i}"].value = transition_11.count(oo[i])
+						if(ma<transition_11.count(oo[i])):
+							ma = transition_11.count(oo[i])
+							rc = b+i
+							cr = gg[j]
+					elif(j==3):
+						ws[f"{gg[j]}{b+i}"].value = transition_2.count(oo[i])
+						if(ma<transition_2.count(oo[i])):
+							ma = transition_2.count(oo[i])
+							rc = b+i
+							cr = gg[j]
+					elif(j==4):
+						ws[f"{gg[j]}{b+i}"].value = transition_22.count(oo[i])
+						if(ma<transition_22.count(oo[i])):
+							ma = transition_22.count(oo[i])
+							rc = b+i
+							cr = gg[j]
+					elif(j==5):
+						ws[f"{gg[j]}{b+i}"].value = transition_3.count(oo[i])
+						if(ma<transition_3.count(oo[i])):
+							ma = transition_3.count(oo[i])
+							rc = b+i
+							cr = gg[j]
+					elif(j==6):
+						ws[f"{gg[j]}{b+i}"].value = transition_33.count(oo[i])
+						if(ma<transition_33.count(oo[i])):
+							ma = transition_33.count(oo[i])
+							rc = b+i
+							cr = gg[j]
+					elif(j==7):
+						ws[f"{gg[j]}{b+i}"].value = transition_4.count(oo[i])
+						if(ma<transition_4.count(oo[i])):
+							ma = transition_4.count(oo[i])
+							rc = b+i
+							cr = gg[j]
+					elif(j==8):
+						ws[f"{gg[j]}{b+i}"].value = transition_44.count(oo[i])
+						if(ma<transition_44.count(oo[i])):
+							ma = transition_44.count(oo[i])
+							rc = b+i
+							cr = gg[j]
+					ws[f"{gg[j]}{b+i}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				ws[f"{cr}{rc}"].fill = PatternFill("solid", fgColor="00FFFF00")
+			b=15
+			for ti in range(0, len(d["T"]), mod):
+				ws[f"{gg[0]}{b}"].value = "Mod Transition Count"
+				b+=1
+				ws[f"{gg[0]}{b}"].value = str(ti)+"-"+str(ti+mod-1)
+				ws[f"{gg[1]}{b}"].value = "To"
+				b+=1
+				for j in range(len(gg)):
+					if(j==0):
+						ws[f"{gg[j]}{b}"].value = "Octant #"
+					else:
+						ws[f"{gg[j]}{b}"].value = oo[j-1]
+					ws[f"{gg[j]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				transition_01 = []
+				transition_011 = []
+				transition_02 = []
+				transition_022 = []
+				transition_03 = []
+				transition_033 = []
+				transition_04 = []
+				transition_044 = []
+			
+				for i in range(ti, ti+mod, 1):
+					if(i<len(d["T"])-1):
+						if(Octant[i+1]==+1):
+							transition_1.append(Octant[i])
+						elif(Octant[i+1]==-1):
+							transition_11.append(Octant[i])
+						elif(Octant[i+1]==+2):
+							transition_2.append(Octant[i])
+						elif(Octant[i+1]==-2):
+							transition_22.append(Octant[i])
+						elif(Octant[i+1]==+3):
+							transition_3.append(Octant[i])
+						elif(Octant[i+1]==-3):
+							transition_33.append(Octant[i])
+						elif(Octant[i+1]==+4):
+							transition_4.append(Octant[i])
+						elif(Octant[i+1]==-4):
+							transition_44.append(Octant[i])
+
+				b+=1
+				for i in range(8):
+					ma = -1
+					rc = 0
+					cr =0
+					for j in range(len(gg)):
+						if(j==0):
+							ws[f"{gg[j]}{b+i}"].value = oo[i]
+						elif(j==1):
+							ws[f"{gg[j]}{b+i}"].value = transition_1.count(oo[i])
+							if(ma<transition_1.count(oo[i])):
+								ma = transition_1.count(oo[i])
+								rc = b+i
+								cr = gg[j]
+						elif(j==2):
+							ws[f"{gg[j]}{b+i}"].value = transition_11.count(oo[i])
+							if(ma<transition_11.count(oo[i])):
+								ma = transition_11.count(oo[i])
+								rc = b+i
+								cr = gg[j]
+						elif(j==3):
+							ws[f"{gg[j]}{b+i}"].value = transition_2.count(oo[i])
+							if(ma<transition_2.count(oo[i])):
+								ma = transition_2.count(oo[i])
+								rc = b+i
+								cr = gg[j]
+						elif(j==4):
+							ws[f"{gg[j]}{b+i}"].value = transition_22.count(oo[i])
+							if(ma<transition_22.count(oo[i])):
+								ma = transition_22.count(oo[i])
+								rc = b+i
+								cr = gg[j]
+						elif(j==5):
+							ws[f"{gg[j]}{b+i}"].value = transition_3.count(oo[i])
+							if(ma<transition_3.count(oo[i])):
+								ma = transition_3.count(oo[i])
+								rc = b+i
+								cr = gg[j]
+						elif(j==6):
+							ws[f"{gg[j]}{b+i}"].value = transition_33.count(oo[i])
+							if(ma<transition_33.count(oo[i])):
+								ma = transition_33.count(oo[i])
+								rc = b+i
+								cr = gg[j]
+						elif(j==7):
+							ws[f"{gg[j]}{b+i}"].value = transition_4.count(oo[i])
+							if(ma<transition_4.count(oo[i])):
+								ma = transition_4.count(oo[i])
+								rc = b+i
+								cr = gg[j]
+						elif(j==8):
+							ws[f"{gg[j]}{b+i}"].value = transition_44.count(oo[i])
+							if(ma<transition_44.count(oo[i])):
+								ma = transition_44.count(oo[i])
+								rc = b+i
+								cr = gg[j]
+						ws[f"{gg[j]}{b+i}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+					ws[f"{cr}{rc}"].fill = PatternFill("solid", fgColor="00FFFF00")
+				b+=10
+
 
 
 			
