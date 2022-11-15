@@ -9,6 +9,7 @@ def attendance_report():
 
     #importing libraries
     import pandas as pd
+    import os
 
     try:
         d1 = pd.read_csv("input_registered_students.csv")
@@ -167,8 +168,13 @@ def attendance_report():
                 inv=din[dates[j]].count(roll[i])
                 new_row = {"Date": str(dates[j]), "Roll": '', "Name": '', "Total Attendance Count": so, "Real": re, "Duplicate": dup, "Invalid": inv, "Absent": abse}
                 pg = pg.append(new_row, ignore_index=True)
-            gg = "output/"+str(roll[i])+".xlsx"
-            pg.to_excel(gg, index=False)
+            try:
+                os.makedirs("output")
+                gg = "output/"+str(roll[i])+".xlsx"
+                pg.to_excel(gg, index=False)
+            except OSError as e:
+                gg = "output/"+str(roll[i])+".xlsx"
+                pg.to_excel(gg, index=False)
     
         mk = {"Roll": "(sorted by roll)", "Name": [None], str(dates[0]): "At least one real is P"}
         pgg = pd.DataFrame(mk)
@@ -198,12 +204,114 @@ def attendance_report():
             new_row["% Attendance"] = round(100*(rop/len(dates)),2)
             pgg = pgg.append(new_row, ignore_index=True)
 
-        pgg.to_excel("output/attendance_report_consolidated.xlsx", index=False)
+        try:
+            os.makedirs("output")
+            pgg.to_excel("output/attendance_report_consolidated.xlsx", index=False)
+        except OSError as e:
+            pgg.to_excel("output/attendance_report_consolidated.xlsx", index=False)
+
+        FROM_ADDR = "mayank265@iitp.ac.in"
+        FROM_PASSWD = "changeme"
+
+        Subject = "Consolidated attendance report for the course CS384"
+        Body ='''
+Dear Student,
+
+Please find attached excel file with this email.
+
+Attached excel file contains the consolidated attendance report of all the students registered for the course CS384.
+
+Thanking You.
+
+--
+IIT Patna
+'''
+
+        toad = "cs3842022@gmail.com"
+        file_path = "output/attendance_report_consolidated.xlsx"
+        
+        send_mail(FROM_ADDR, FROM_PASSWD, toad, Subject, Body, file_path)
 
 
     except:
         print("Something went wrong while opening the file or file is not found.")
         exit()
+
+
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+
+import csv
+from random import randint
+from time import sleep
+
+
+
+def send_mail(fromaddr, frompasswd, toaddr, msg_subject, msg_body, file_path):
+    try:
+        msg = MIMEMultipart()
+        print("[+] Message Object Created")
+    except:
+        print("[-] Error in Creating Message Object")
+        return
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = msg_subject
+
+    body = msg_body
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = file_path
+    attachment = open(filename, "rb")
+
+    p = MIMEBase('application', 'octet-stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    try:
+        msg.attach(p)
+        print("[+] File Attached")
+    except:
+        print("[-] Error in Attaching file")
+        return
+
+    try:
+        #s = smtplib.SMTP('smtp.gmail.com', 587)
+        s = smtplib.SMTP('mail.iitp.ac.in', 587)
+        print("[+] SMTP Session Created")
+    except:
+        print("[-] Error in creating SMTP session")
+        return
+
+    s.starttls()
+
+    try:
+        s.login(fromaddr, frompasswd)
+        print("[+] Login Successful")
+    except:
+        print("[-] Login Failed")
+
+    text = msg.as_string()
+
+    try:
+        s.sendmail(fromaddr, toaddr, text)
+        print("[+] Mail Sent successfully")
+    except:
+        print('[-] Mail not sent')
+
+    s.quit()
+
 
 from platform import python_version
 ver = python_version()
