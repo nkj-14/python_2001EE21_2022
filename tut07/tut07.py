@@ -541,6 +541,307 @@ def octant_analysis(mod=5000):
 					ws[f"{cr}{rc}"].fill = PatternFill("solid", fgColor="00FFFF00")
 				b+=10
 
+			v=u1=u2=u3=u4=u5=u6=u7=u8=u11=u22=u33=u44=u55=u66=u77=u88=0
+			f1=[]
+			f2=[]
+			f3=[]
+			f4=[]
+			f5=[]
+			f6=[]
+			f7=[]
+			f8=[]
+			t1=[]
+			t2=[]
+			t3=[]
+			t4=[]
+			t5=[]
+			t6=[]
+			t7=[]
+			t8=[]
+			for i in range(len(d["T"])):
+				if(i==0):
+					v=1
+				elif(Octant[i]==Octant[i-1]):
+					v+=1
+				else:
+					if(Octant[i-1]==1 and u1<=v):
+						if(u1<v):
+							u11=1
+						else:
+							u11+=1
+						u1=v
+					elif(Octant[i-1]==-1 and u2<=v):
+						if(u2<v):
+							u22=1
+						else:
+							u22+=1
+						u2=v
+					elif(Octant[i-1]==2 and u3<=v):
+						if(u3<v):
+							u33=1
+						else:
+							u33+=1
+						u3=v
+					elif(Octant[i-1]==-2 and u4<=v):
+						if(u4<v):
+							u44=1
+						else:
+							u44+=1
+						u4=v
+					elif(Octant[i-1]==3 and u5<=v):
+						if(u5<v):
+							u55=1
+						else:
+							u55+=1
+						u5=v
+					elif(Octant[i-1]==-3 and u6<=v):
+						if(u6<v):
+							u66=1
+						else:
+							u66+=1
+						u6=v
+					elif(Octant[i-1]==4 and u7<=v):
+						if(u7<v):
+							u77=1
+						else:
+							u77+=1
+						u7=v
+					elif(Octant[i-1]==-4 and u8<=v):
+						if(u8<v):
+							u88=1
+						else:
+							u88+=1
+						u8=v
+					v=1
+			if(Octant[len(d["T"])-1]==1 and u1<=v):
+				if(u1<v):
+					u11=1
+				else:
+					u11+=1
+				u1=v
+			elif(Octant[len(d["T"])-1]==-1 and u2<=v):
+				if(u2<v):
+					u22=1
+				else:
+					u22+=1
+				u2=v
+			elif(Octant[len(d["T"])-1]==2 and u3<=v):
+				if(u3<v):
+					u33=1
+				else:
+					u33+=1
+				u3=v
+			elif(Octant[len(d["T"])-1]==-2 and u4<=v):
+				if(u4<v):
+					u44=1
+				else:
+					u44+=1
+				u4=v
+			elif(Octant[len(d["T"])-1]==3 and u5<=v):
+				if(u5<v):
+					u55=1
+				else:
+					u55+=1
+				u5=v
+			elif(Octant[len(d["T"])-1]==-3 and u6<=v):
+				if(u6<v):
+					u66=1
+				else:
+					u66+=1
+				u6=v
+			elif(Octant[len(d["T"])-1]==4 and u7<=v):
+				if(u7<v):
+					u77=1
+				else:
+					u77+=1
+				u7=v
+			elif(Octant[len(d["T"])-1]==-4 and u8<=v):
+				if(u8<v):
+					u88=1
+				else:
+					u88+=1
+				u8=v
+			e=0
+			for i in range(len(d["T"])):
+				if(i==0):
+					e=1
+				elif(Octant[i]==Octant[i-1]):
+					e+=1
+				elif(Octant[i]!=Octant[i-1]):
+					if(Octant[i-1]==1 and e==u1):
+						f1.append(d["T"][i-e])
+						t1.append(d["T"][i-1])
+					elif(Octant[i-1]==-1 and e==u2):
+						f2.append(d["T"][i-e])
+						t2.append(d["T"][i-1])
+					elif(Octant[i-1]==2 and e==u3):
+						f3.append(d["T"][i-e])
+						t3.append(d["T"][i-1])
+					elif(Octant[i-1]==-2 and e==u4):
+						f4.append(d["T"][i-e])
+						t4.append(d["T"][i-1])
+					elif(Octant[i-1]==3 and e==u5):
+						f5.append(d["T"][i-e])
+						t5.append(d["T"][i-1])
+					elif(Octant[i-1]==-3 and e==u6):
+						f6.append(d["T"][i-e])
+						t6.append(d["T"][i-1])
+					elif(Octant[i-1]==4 and e==u7):
+						f7.append(d["T"][i-e])
+						t7.append(d["T"][i-1])
+					elif(Octant[i-1]==-4 and e==u8):
+						f8.append(d["T"][i-e])
+						t8.append(d["T"][i-1])
+					e=1
+			if(Octant[len(d["T"])-1]==1 and e==u1):
+				f1.append(d["T"][len(d["T"])-e])
+				t1.append(d["T"][len(d["T"])-1])
+			elif(Octant[len(d["T"])-1]==-1 and e==u2):
+				f2.append(d["T"][len(d["T"])-e])
+				t2.append(d["T"][len(d["T"])-1])
+			elif(Octant[len(d["T"])-1]==2 and e==u3):
+				f3.append(d["T"][len(d["T"])-e])
+				t3.append(d["T"][len(d["T"])-1])
+			elif(Octant[len(d["T"])-1]==-2 and e==u4):
+				f4.append(d["T"][len(d["T"])-e])
+				t4.append(d["T"][len(d["T"])-1])
+			elif(Octant[len(d["T"])-1]==3 and e==u5):
+				f5.append(d["T"][len(d["T"])-e])
+				t5.append(d["T"][len(d["T"])-1])
+			elif(Octant[len(d["T"])-1]==-3 and e==u6):
+				f6.append(d["T"][len(d["T"])-e])
+				t6.append(d["T"][len(d["T"])-1])
+			elif(Octant[len(d["T"])-1]==4 and e==u7):
+				f7.append(d["T"][len(d["T"])-e])
+				t7.append(d["T"][len(d["T"])-1])
+			elif(Octant[len(d["T"])-1]==-4 and e==u8):
+				f8.append(d["T"][len(d["T"])-e])
+				t8.append(d["T"][len(d["T"])-1])
+			longest_subsequence = [u1,u2,u3,u4,u5,u6,u7,u8]
+			cnt = [u11,u22,u33,u44,u55,u66,u77,u88]
+
+			ccc = ["AS", "AT", "AU"]
+			ws[f"{ccc[0]}{1}"].value = "Longest Subsequence Length"
+			ws[f"{ccc[0]}{3}"].value = "Octant ##"
+			ws[f"{ccc[1]}{3}"].value = "Longest Subsequence Length"
+			ws[f"{ccc[2]}{3}"].value = "Count"
+			ws[f"{ccc[0]}{3}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+			ws[f"{ccc[1]}{3}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+			ws[f"{ccc[2]}{3}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+			b=4
+			for i in range(8):
+				ws[f"{ccc[0]}{b}"].value = oo[i]
+				ws[f"{ccc[1]}{b}"].value = longest_subsequence[i]
+				ws[f"{ccc[2]}{b}"].value = cnt[i]
+				ws[f"{ccc[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				ws[f"{ccc[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				ws[f"{ccc[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+				b+=1
+			
+			df = ["AW", "AX", "AY"]
+			ws[f"{df[0]}{1}"].value = "Longest Subsequence Length with Range"
+			ws[f"{df[0]}{3}"].value = "Octant ###"
+			ws[f"{df[1]}{3}"].value = "Longest Subsequence Length"
+			ws[f"{df[2]}{3}"].value = "Count"
+			ws[f"{df[0]}{3}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+			ws[f"{df[1]}{3}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+			ws[f"{df[2]}{3}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+			b=4
+
+			for i in range(8):
+				ws[f"{df[0]}{b}"].value = oo[i]
+				ws[f"{df[1]}{b}"].value = longest_subsequence[i]
+				ws[f"{df[2]}{b}"].value = cnt[i]
+				ws[f"{df[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				ws[f"{df[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+				b+=1
+				ws[f"{df[0]}{b}"].value = "Time"
+				ws[f"{df[1]}{b}"].value = "From"
+				ws[f"{df[2]}{b}"].value = "To"
+				ws[f"{df[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				ws[f"{df[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+				b+=1
+				for j in range(cnt[i]):
+					if(i==0):
+						ws[f"{df[1]}{b}"].value = f1[j]
+						ws[f"{df[2]}{b}"].value = t1[j]
+						ws[f"{df[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+						b+=1
+
+					elif(i==1):
+						ws[f"{df[1]}{b}"].value = f2[j]
+						ws[f"{df[2]}{b}"].value = t2[j]
+						ws[f"{df[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+						b+=1
+
+					elif(i==2):
+						ws[f"{df[1]}{b}"].value = f3[j]
+						ws[f"{df[2]}{b}"].value = t3[j]
+						ws[f"{df[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						
+						b+=1
+
+					elif(i==3):
+						ws[f"{df[1]}{b}"].value = f4[j]
+						ws[f"{df[2]}{b}"].value = t4[j]
+						ws[f"{df[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						
+						b+=1
+
+					elif(i==4):
+						ws[f"{df[1]}{b}"].value = f5[j]
+						ws[f"{df[2]}{b}"].value = t5[j]
+						ws[f"{df[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						
+						b+=1
+
+					elif(i==5):
+						ws[f"{df[1]}{b}"].value = f6[j]
+						ws[f"{df[2]}{b}"].value = t6[j]
+						ws[f"{df[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						
+						b+=1
+
+					elif(i==6):
+						ws[f"{df[1]}{b}"].value = f7[j]
+						ws[f"{df[2]}{b}"].value = t7[j]
+						ws[f"{df[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						
+						b+=1
+
+					elif(i==7):
+						ws[f"{df[1]}{b}"].value = f8[j]
+						ws[f"{df[2]}{b}"].value = t8[j]
+						ws[f"{df[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+						
+						b+=1
+
+
 
 
 			
