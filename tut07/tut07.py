@@ -81,6 +81,259 @@ def octant_analysis(mod=5000):
 			wh = [d_1, d_2, d_3, d_4, o1, o2, o3, u1, v1, w1, Octant]
 			
 
+			for i in range(len(col)):
+				ws[f"{col[i]}{ri}"].value = text[i]
+				for r in range(3,len(d_1)+3):
+					ws[f"{col[i]}{r}"].value = wh[i][r-3]
+			c= "M"
+			ws[f"{c}{4}"].value = "Mod " + str(mod)
+
+			c= "N"
+			ws[f"{c}{1}"].value = "Overall Octant Count"
+
+			thin = Side(border_style="thin", color="000000")
+
+			co = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF"]
+			tex = ["Octant ID", "+1", "-1", "+2", "-2", "+3", "-3", "+4", "-4", "Rank Octant 1", "Rank Octant -1", "Rank Octant 2", "Rank Octant -2", "Rank Octant 3", "Rank Octant -3", "Rank Octant 4", "Rank Octant -4", "Rank1 Octant ID", "Rank1 Octant Name"]
+
+			for i in range(len(co)):
+				ws[f"{co[i]}{3}"].value = tex[i]
+				ws[f"{co[i]}{3}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+			for p in range(len(co)):
+
+				ws[f"{co[p]}{4}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				OctantName = ["Internal outward interaction", "External outward interaction", "External Ejection", "Internal Ejection", "External inward interaction", "Internal inward interaction", "Internal sweep", "External sweep"]
+				rr = [Octant.count(1), Octant.count(-1), Octant.count(2), Octant.count(-2), Octant.count(3), Octant.count(-3), Octant.count(4), Octant.count(-4)]
+				rrr = [Octant.count(1), Octant.count(-1), Octant.count(2), Octant.count(-2), Octant.count(3), Octant.count(-3), Octant.count(4), Octant.count(-4)]
+				rrr.sort(reverse=True)
+				r1=r2=r3=r4=r5=r6=r7=r8=c=0
+				for i in range(8):
+					c=0
+					for j in range(8):
+						if(rr[i]==rrr[j]):
+							if(j==0):
+								if(i==0):
+									ro=1
+								elif(i==1):
+									ro=-1
+								elif(i==2):
+									ro=2
+								elif(i==3):
+									ro=-2
+								elif(i==4):
+									ro=3
+								elif(i==5):
+									ro=-3
+								elif(i==6):
+									ro=4
+								elif(i==7):
+									ro=-4
+								rn=OctantName[i]
+							if(i==0):
+								r1=(j+1)
+							elif(i==1):
+								r2=(j+1)
+							elif(i==2):
+								r3=(j+1)
+							elif(i==3):
+								r4=(j+1)
+							elif(i==4):
+								r5=(j+1)
+							elif(i==5):
+								r6=(j+1)
+							elif(i==6):
+								r7=(j+1)
+							elif(i==7):
+								r8=(j+1)
+							c=1
+						if(c==1):
+							break
+				if(co[p]=="N"):
+					ws[f"{co[p]}{4}"].value = "Overall Count"
+				elif(co[p]=="O"):
+					ws[f"{co[p]}{4}"].value = Octant.count(1)
+				elif(co[p]=="P"):
+					ws[f"{co[p]}{4}"].value = Octant.count(-1)
+				elif(co[p]=="Q"):
+					ws[f"{co[p]}{4}"].value = Octant.count(2)
+				elif(co[p]=="R"):
+					ws[f"{co[p]}{4}"].value = Octant.count(-2)
+				elif(co[p]=="S"):
+					ws[f"{co[p]}{4}"].value = Octant.count(3)
+				elif(co[p]=="T"):
+					ws[f"{co[p]}{4}"].value = Octant.count(-3)
+				elif(co[p]=="U"):
+					ws[f"{co[p]}{4}"].value = Octant.count(4)
+				elif(co[p]=="V"):
+					ws[f"{co[p]}{4}"].value = Octant.count(-4)
+				elif(co[p]=="W"):
+					ws[f"{co[p]}{4}"].value = r1
+					if(r1==1):
+						ws[f"{co[p]}{4}"].fill = PatternFill("solid", fgColor="00FFFF00")
+				elif(co[p]=="X"):
+					ws[f"{co[p]}{4}"].value = r2
+					if(r2==1):
+						ws[f"{co[p]}{4}"].fill = PatternFill("solid", fgColor="00FFFF00")
+				elif(co[p]=="Y"):
+					ws[f"{co[p]}{4}"].value = r3
+					if(r3==1):
+						ws[f"{co[p]}{4}"].fill = PatternFill("solid", fgColor="00FFFF00")
+				elif(co[p]=="Z"):
+					ws[f"{co[p]}{4}"].value = r4
+					if(r4==1):
+						ws[f"{co[p]}{4}"].fill = PatternFill("solid", fgColor="00FFFF00")
+				elif(co[p]=="AA"):
+					ws[f"{co[p]}{4}"].value = r5
+					if(r5==1):
+						ws[f"{co[p]}{4}"].fill = PatternFill("solid", fgColor="00FFFF00")
+				elif(co[p]=="AB"):
+					ws[f"{co[p]}{4}"].value = r6
+					if(r6==1):
+						ws[f"{co[p]}{4}"].fill = PatternFill("solid", fgColor="00FFFF00")
+				elif(co[p]=="AC"):
+					ws[f"{co[p]}{4}"].value = r7
+					if(r7==1):
+						ws[f"{co[p]}{4}"].fill = PatternFill("solid", fgColor="00FFFF00")
+				elif(co[p]=="AD"):
+					ws[f"{co[p]}{4}"].value = r8
+					if(r8==1):
+						ws[f"{co[p]}{4}"].fill = PatternFill("solid", fgColor="00FFFF00")
+				elif(co[p]=="AE"):
+					ws[f"{co[p]}{4}"].value = ro
+				elif(co[p]=="AF"):
+					ws[f"{co[p]}{4}"].value = rn
+
+			b=4
+			ofc = []
+			for k in range(0, len(d["T"]), mod):
+				b+=1
+				for p in range(len(co)):
+
+					ws[f"{co[p]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+					OctantName = ["Internal outward interaction", "External outward interaction", "External Ejection", "Internal Ejection", "External inward interaction", "Internal inward interaction", "Internal sweep", "External sweep"]
+					rr = [Octant[k:k+mod].count(1), Octant[k:k+mod].count(-1), Octant[k:k+mod].count(2), Octant[k:k+mod].count(-2), Octant[k:k+mod].count(3), Octant[k:k+mod].count(-3), Octant[k:k+mod].count(4), Octant[k:k+mod].count(-4)]
+					rrr = [Octant[k:k+mod].count(1), Octant[k:k+mod].count(-1), Octant[k:k+mod].count(2), Octant[k:k+mod].count(-2), Octant[k:k+mod].count(3), Octant[k:k+mod].count(-3), Octant[k:k+mod].count(4), Octant[k:k+mod].count(-4)]
+					rrr.sort(reverse=True)
+					r1=r2=r3=r4=r5=r6=r7=r8=c=0
+					for i in range(8):
+						c=0
+						for j in range(8):
+							if(rr[i]==rrr[j]):
+								if(j==0):
+									if(i==0):
+										ro=1
+									elif(i==1):
+										ro=-1
+									elif(i==2):
+										ro=2
+									elif(i==3):
+										ro=-2
+									elif(i==4):
+										ro=3
+									elif(i==5):
+										ro=-3
+									elif(i==6):
+										ro=4
+									elif(i==7):
+										ro=-4
+									rn=OctantName[i]
+									
+								if(i==0):
+									r1=(j+1)
+								elif(i==1):
+									r2=(j+1)
+								elif(i==2):
+									r3=(j+1)
+								elif(i==3):
+									r4=(j+1)
+								elif(i==4):
+									r5=(j+1)
+								elif(i==5):
+									r6=(j+1)
+								elif(i==6):
+									r7=(j+1)
+								elif(i==7):
+									r8=(j+1)
+								c=1
+							if(c==1):
+								break
+					if(co[p]=="N"):
+						ws[f"{co[p]}{b}"].value = str(k) + "-" + str(k+mod-1)
+					elif(co[p]=="O"):
+						ws[f"{co[p]}{b}"].value = Octant[k:k+mod].count(1)
+					elif(co[p]=="P"):
+						ws[f"{co[p]}{b}"].value = Octant[k:k+mod].count(-1)
+					elif(co[p]=="Q"):
+						ws[f"{co[p]}{b}"].value = Octant[k:k+mod].count(2)
+					elif(co[p]=="R"):
+						ws[f"{co[p]}{b}"].value = Octant[k:k+mod].count(-2)
+					elif(co[p]=="S"):
+						ws[f"{co[p]}{b}"].value = Octant[k:k+mod].count(3)
+					elif(co[p]=="T"):
+						ws[f"{co[p]}{b}"].value = Octant[k:k+mod].count(-3)
+					elif(co[p]=="U"):
+						ws[f"{co[p]}{b}"].value = Octant[k:k+mod].count(4)
+					elif(co[p]=="V"):
+						ws[f"{co[p]}{b}"].value = Octant[k:k+mod].count(-4)
+					elif(co[p]=="W"):
+						ws[f"{co[p]}{b}"].value = r1
+						if(r1==1):
+							ws[f"{co[p]}{b}"].fill = PatternFill("solid", fgColor="00FFFF00")
+					elif(co[p]=="X"):
+						ws[f"{co[p]}{b}"].value = r2
+						if(r2==1):
+							ws[f"{co[p]}{b}"].fill = PatternFill("solid", fgColor="00FFFF00")
+					elif(co[p]=="Y"):
+						ws[f"{co[p]}{b}"].value = r3
+						if(r3==1):
+							ws[f"{co[p]}{b}"].fill = PatternFill("solid", fgColor="00FFFF00")
+					elif(co[p]=="Z"):
+						ws[f"{co[p]}{b}"].value = r4
+						if(r4==1):
+							ws[f"{co[p]}{b}"].fill = PatternFill("solid", fgColor="00FFFF00")
+					elif(co[p]=="AA"):
+						ws[f"{co[p]}{b}"].value = r5
+						if(r5==1):
+							ws[f"{co[p]}{b}"].fill = PatternFill("solid", fgColor="00FFFF00")
+					elif(co[p]=="AB"):
+						ws[f"{co[p]}{b}"].value = r6
+						if(r6==1):
+							ws[f"{co[p]}{b}"].fill = PatternFill("solid", fgColor="00FFFF00")
+					elif(co[p]=="AC"):
+						ws[f"{co[p]}{b}"].value = r7
+						if(r7==1):
+							ws[f"{co[p]}{b}"].fill = PatternFill("solid", fgColor="00FFFF00")
+					elif(co[p]=="AD"):
+						ws[f"{co[p]}{b}"].value = r8
+						if(r8==1):
+							ws[f"{co[p]}{b}"].fill = PatternFill("solid", fgColor="00FFFF00")
+					elif(co[p]=="AE"):
+						ws[f"{co[p]}{b}"].value = ro
+					elif(co[p]=="AF"):
+						ws[f"{co[p]}{b}"].value = rn
+						ofc.append(rn)
+
+			b+=2
+			g = ["AC", "AD", "AE"]
+			ws[f"{g[0]}{b}"].value = "Octant ID"
+			ws[f"{g[1]}{b}"].value = "Octant Name"
+			ws[f"{g[2]}{b}"].value = "Count of Rank 1 Mod Values"
+			ws[f"{g[0]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+			ws[f"{g[1]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+			ws[f"{g[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+			b+=1
+
+			oo = [1, -1, 2, -2, 3, -3, 4, -4]
+			for i in range(8):
+				ws[f"{g[0]}{b+i}"].value = oo[i]
+				ws[f"{g[1]}{b+i}"].value = OctantName[i]
+				ws[f"{g[2]}{b+i}"].value = ofc.count(OctantName[i])
+				ws[f"{g[0]}{b+i}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				ws[f"{g[1]}{b+i}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+				ws[f"{g[2]}{b+i}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+
 
 
 			
