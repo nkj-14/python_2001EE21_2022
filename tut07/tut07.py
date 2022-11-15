@@ -17,7 +17,29 @@ def octant_analysis(mod=5000):
 	import pandas as pd
 	import glob
 	import os
-	
+
+
+	try:
+
+		path = "input" 
+		filenames = glob.glob(path + "\*.xlsx")
+
+		for file in filenames:
+
+			print(str(file)[5:])
+
+			wb = Workbook()
+			ws = wb.active
+			#ws.title = "output"
+
+			d = pd.read_excel(file)
+
+
+
+			
+	except:
+	    print("Something went wrong while opening the file or file is not found.")
+        
 
 
 from platform import python_version
