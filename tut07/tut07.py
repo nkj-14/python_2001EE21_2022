@@ -842,6 +842,15 @@ def octant_analysis(mod=5000):
 						b+=1
 
 
+			try:
+				os.makedirs("output")
+				strout = "output" + str(file)[5:-5] + "_octant_analysis_mod_" + str(mod) + ".xlsx"
+				wb.save(filename= strout)
+			except OSError as e:
+				strout = "output" + str(file)[5:-5] + "_octant_analysis_mod_" + str(mod) + ".xlsx"
+				wb.save(filename= strout)
+			
+
 
 
 			
