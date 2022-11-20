@@ -11,6 +11,13 @@ def innings(team):
 
     teampak = open(team, "r").read()
 
+    pakteam = []
+
+    for r in teampak.split('\n'):
+        pakteam.append(r)
+    
+    line = []
+    toline = []
 
 def scorecard():
 	pass
