@@ -311,8 +311,18 @@ else:
 	print("Please install 3.8.10. Instruction are present in the GitHub Repo/Webmail. Url: https://pastebin.com/nvibxmjw")
 
 
-scorecard()
 
+try:
+	
+	import sys,os
+	orig_stdout = sys.stdout
+	sys.stdout = open('Scorecard.txt','wt')
+	scorecard()
+	sys.stdout.close()
+	sys.stdout=orig_stdout
+
+except:
+	print("Somrthing went wrong! Make sure to put correct filepath if needed.")
 
 
 
