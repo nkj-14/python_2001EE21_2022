@@ -18,6 +18,22 @@ def innings(team):
     
     line = []
     toline = []
+    for i in range(0,len(pakteam),2):
+        line.append(pakteam[i].split(','))
+        toline.append(pakteam[i].split(','))
+    
+    batsman = []
+    ballers = []
+    ball = []
+    balls = ['0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.6', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '3.1', '3.2', '3.3', '3.4', '3.5', '3.6', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6']
+    for i in range(len(line)):
+        players = line[i][0].split(' to ')
+        batsman.append(players[1])
+        ballers.append(players[0].split(' ', 1)[1])
+        ball.append(players[0].split(' ')[0])
+    batsman = list(dict.fromkeys(batsman))
+    ballers = list(dict.fromkeys(ballers))
+
 
 def scorecard():
 	pass
