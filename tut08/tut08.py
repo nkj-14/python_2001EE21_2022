@@ -34,6 +34,16 @@ def innings(team):
     batsman = list(dict.fromkeys(batsman))
     ballers = list(dict.fromkeys(ballers))
 
+    datapakbat = pd.DataFrame(0, batsman, [' ', 'R', 'B', '4s', '6s', 'SR'])
+    datapakbat[' '] = "not out"
+
+    datapakball = pd.DataFrame(0, ballers, ['O', 'M', 'R', 'W', 'NB', 'WD', 'ECO'])
+
+    forballnum = pd.DataFrame(0, ballers, ['B'])
+    
+    extra = wide = score = noball = wicket = b = lb = p = count = 0
+    fall = []
+
 
 def scorecard():
 	pass
