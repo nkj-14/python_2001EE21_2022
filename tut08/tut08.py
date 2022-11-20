@@ -3,6 +3,15 @@ from datetime import datetime
 start_time = datetime.now()
 
 #Help
+
+
+def innings(team):
+        
+    import pandas as pd
+
+    teampak = open(team, "r").read()
+
+
 def scorecard():
 	pass
 
