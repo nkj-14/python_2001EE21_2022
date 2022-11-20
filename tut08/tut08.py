@@ -299,6 +299,8 @@ def scorecard():
 
 
 ###Code
+	innings("pak_inns1.txt")
+	innings("india_inns2.txt")
 
 from platform import python_version
 ver = python_version()
