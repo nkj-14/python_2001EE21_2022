@@ -271,6 +271,28 @@ def innings(team):
         datapakball.loc[ballname, 'O'] = (int(forballnum.loc[ballname, 'B']/6))+((forballnum.loc[ballname, 'B']%6)/10)
         datapakball.loc[ballname, 'ECO'] = (str(round(datapakball.loc[ballname, 'R']/(forballnum.loc[ballname, 'B']/6),1))+'0')
 
+    if(team == 'pak_inns1.txt'):
+        print(f"{'Pakistan Innings' : <20}{str(score)+'-'+str(wicket)+'('+str(ball[len(ball)-1])+' Ov)' : >70}")
+    else:
+        print(f"{'India Innings' : <20}{str(score)+'-'+str(wicket)+'('+str(ball[len(ball)-1])+' Ov)' : >70}")
+    print(f"{'Batter':<20}{' ':<40}{'R':^5}{'B':^5}{'4s':^5}{'6s':^5}{'SR':>10}")
+    for i in range(len(batsman)):
+        print(f"{batsman[i]:<20}{datapakbat.loc[batsman[i], ' ']:<40}{datapakbat.loc[batsman[i], 'R']:^5}{datapakbat.loc[batsman[i], 'B']:^5}{datapakbat.loc[batsman[i], '4s']:^5}{datapakbat.loc[batsman[i], '6s']:^5}{datapakbat.loc[batsman[i], 'SR']:>10}")
+    print(f"{'Extras':<60}{str(extra)+' (b '+str(b)+', lb '+str(lb)+', w '+str(wide)+', nb '+str(noball)+', p '+str(p)+')': <30}")
+    print(f"{'Total': <60}{str(score)+' ('+str(wicket)+' wkts, '+str(ball[len(ball)-1])+' Ov)':<30}")
+    print(f"{'Fall of Wickets':<90}")
+    lo=''
+    for i in range(len(fall)):
+        lo=lo+fall[i]
+        if(i!=len(fall)-1):
+            lo=lo+', '
+    print(f"{lo}")
+    print(f"{'Bowler':<50}{'O':^5}{'M':^5}{'R':^5}{'W':5}{'NB':^5}{'WD':^5}{'ECO':>10}")
+    for i in range(len(ballers)):
+        print(f"{ballers[i]:<50}{datapakball.loc[ballers[i], 'O']:^5}{datapakball.loc[ballers[i], 'M']:^5}{datapakball.loc[ballers[i], 'R']:^5}{datapakball.loc[ballers[i], 'W']:5}{datapakball.loc[ballers[i], 'NB']:^5}{datapakball.loc[ballers[i], 'WD']:^5}{datapakball.loc[ballers[i], 'ECO']:>10}")
+        
+    print(f"{'Powerplays':<30}{'Overs':^30}{'Runs':>30}")
+    print(f"{'Mandatory':<30}{'0.1-6':^30}{count:>30}")
 
 def scorecard():
 	pass
