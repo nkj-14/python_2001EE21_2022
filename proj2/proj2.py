@@ -1,4 +1,6 @@
 
+from openpyxl import Workbook
+from openpyxl.styles import Border, Side, PatternFill
 from datetime import datetime
 start_time = datetime.now()
 
@@ -1757,6 +1759,19 @@ def octant_analysis_single(file, mod=5000):
 					b+=1
 
 
+		virtual_workbook = BytesIO()
+		wb.save(virtual_workbook)
+		fd = file.name.split('.xlsx')[0]
+		strout = str(fd)+"_"+str(mod)+"_"+str(datetime.now().year)+"-"+str(datetime.now().month)+"-"+str(datetime.now().day)+"-"+str(datetime.now().hour)+"-"+str(datetime.now().minute)+"-"+str(datetime.now().second)+".xlsx"
+
+
+		import streamlit as st
+		st.write("Your result is ready to download.")
+		
+		st.download_button("Download",
+		data=virtual_workbook,
+		mime='xlsx',
+		file_name=strout)
 
 
 			
