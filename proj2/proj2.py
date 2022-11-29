@@ -902,6 +902,16 @@ def octant_analysis(path, mod=5000):
 						ws[f"{df[2]}{b}"].border = Border(top=thin, left=thin, right=thin, bottom=thin)
 						
 						b+=1
+			fd = file.split('\\')[-1].split('.xlsx')[0]
+			print(fd)
+			strout = 'output\\'+str(fd)+"_"+str(mod)+"_"+str(datetime.now().year)+"-"+str(datetime.now().month)+"-"+str(datetime.now().day)+"-"+str(datetime.now().hour)+"-"+str(datetime.now().minute)+"-"+str(datetime.now().second)+".xlsx"
+			print(strout)
+			try:
+				os.makedirs("output\\")
+				wb.save(filename= strout)
+			except OSError as e:
+				wb.save(filename= strout)
+
 
 	except:
 		import streamlit as st
