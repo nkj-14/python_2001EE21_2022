@@ -646,3 +646,72 @@ def add_front_name(name,x):
 	print(name)
 	return name
 
+
+
+st.markdown("<h1 style='text-align: center; color: grey;'>CS384 - Python</h1>", unsafe_allow_html=True)
+	
+st.markdown("<h2 style='text-align: center; color: black;'>Project 3</h2>", unsafe_allow_html=True)
+
+st.markdown("<h2 style='text-align: center; color: black;'></h2>", unsafe_allow_html=True)
+
+st.markdown("<h5 style='text-align: left; color: black;'>Kindly enter the input values for below:</h5>", unsafe_allow_html=True)
+
+input_1 = st.number_input("constant_fk2d:")
+
+st.markdown("<h3 style='text-align: center; color: black;'></h3>", unsafe_allow_html=True)
+input_2 = st.number_input("multiplying_factor_3d:")		
+
+st.markdown("<h3 style='text-align: center; color: black;'></h3>", unsafe_allow_html=True)
+
+input_3 = st.number_input("Shear_velocity:")
+
+st.markdown("<h3 style='text-align: center; color: black;'></h3>", unsafe_allow_html=True)
+st.markdown("<h5 style='text-align: left; color: black;'>Filtering methods are as follows:</h5>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>1. C</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>2. S</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>3. A</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>4. C & S</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>5. C & A</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>6. S & A</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>7. C & S & A</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>8. all combine</h6>", unsafe_allow_html=True)
+
+input_4 = st.number_input("Choose filteribg method from above:", min_value=1, max_value=8, step=1)
+st.markdown("<h3 style='text-align: center; color: black;'></h3>", unsafe_allow_html=True)
+if(input_4==1):
+	input_5=st.number_input("Enter thresold value C:", step=1)
+elif(input_4==2):
+	input_5=st.number_input("Enter thresold value S:", step=1)
+elif(input_4==3):
+	input_5 = st.number_input("Enter lambda value for A:")
+	input_6 = st.number_input("Enter k value for A:", step=1)
+elif(input_4==4):
+	input_5 = st.number_input("Enter thresold value C:", step=1)
+	input_6 = st.number_input("Enter thresold value S:", step=1)
+elif(input_4==5):
+	input_5 = st.number_input("Enter thresold value C:", step=1)
+	input_6 = st.number_input("Enter lambda value for A:")
+	input_7 = st.number_input("Enter k value for A:")
+elif(input_4==6):
+	input_5 = st.number_input("Enter thresold value S:", step=1)
+	input_6 = st.number_input("Enter lambda value for A:")
+	input_7 = st.number_input("Enter k value for A:")
+elif(input_4==7 or input_4==8):
+	input_5 = st.number_input("Enter thresold value C:", step=1)
+	input_6 = st.number_input("Enter thresold value S:", step=1)
+	input_7 = st.number_input("Enter lambda value for A:")
+	input_8 = st.number_input("Enter k value for A:")
+
+st.markdown("<h6 style='text-align: left; color: black;'>Replacement methods are as follows:</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>1. previous point</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>2. 2*last-2nd_last</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>3. overall_mean</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>4. 12_point_strategy</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>5. mean of previous 2 point</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>6. all seqential</h6>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: left; color: black;'>7. all parallel</h6>", unsafe_allow_html=True)
+
+input_9 = st.number_input("Choose replacement method from above:", min_value=1, max_value=7,step=1)
+
+#Adding buttons
+st.markdown("<h2 style='text-align: center; color: black;'></h2>", unsafe_allow_html=True)
