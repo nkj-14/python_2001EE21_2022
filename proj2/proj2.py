@@ -8,7 +8,6 @@ start_time = datetime.now()
 def proj_octant_gui():
 	pass
 
-
 ###Code
 	
 	import streamlit as st
@@ -55,15 +54,16 @@ def proj_octant_gui():
 	bt = st.button('Compute')
 
 	if(bt and input_11!=None):
-		st.write('Do you want to download the resultant files ?')
+		st.write('Do you want to download the resultant files ? It will be downloaded in the output folder over same path of input folder.')
 		nt = st.button('Download')
 		octant_analysis(input_11, input_2)
 		if(nt):
-			st.write('Resultant files have been downloaded in the same input folder path.')
+			st.write('Done.')
 	elif(bt and input_1.name[-5:]==".xlsx"):
 		octant_analysis_single(input_1, input_2)
 	elif(bt and input_1.name[-5:]!=".xlsx"):
 		st.write("Uploded file is not excel type file.")
+
 
 
 
