@@ -715,3 +715,6 @@ input_9 = st.number_input("Choose replacement method from above:", min_value=1, 
 
 #Adding buttons
 st.markdown("<h2 style='text-align: center; color: black;'></h2>", unsafe_allow_html=True)
+
+bt = st.button('Compute')
+ref=0
