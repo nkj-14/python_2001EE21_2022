@@ -980,3 +980,13 @@ if(bt):
 
 
 end_time = datetime.now()
+
+print("-------------------------------------------------------------------")
+print("\nStart Time :", start_time.strftime("%c"))
+print("\nEnd Time :", end_time.strftime("%c")) 
+print('\nDuration: {}'.format(end_time - start_time))
+duration=end_time - start_time
+name="Complete Duration"
+duration_timestamp_to_file(name, duration)
+
+print("-------------------------------------------------------------------")
